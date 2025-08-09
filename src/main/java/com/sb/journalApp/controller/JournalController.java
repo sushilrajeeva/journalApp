@@ -53,6 +53,14 @@ public class JournalController {
         journalService.deleteJournalById(id);
     }
 
+    @GetMapping("/by-user/{userId}")
+    public Page<JournalResponse> getJournalsByUserId(@PathVariable Long userId,
+                                            @RequestParam(defaultValue="0") int page,
+                                            @RequestParam(defaultValue="10") int size) {
+        return journalService.getJournalsByUser(userId, page, size);
+    }
+
+
 
 }
 

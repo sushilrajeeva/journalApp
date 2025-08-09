@@ -12,4 +12,5 @@ public class JournalResponse {
     private String message;
     private OffsetDateTime createdAt;
     private OffsetDateTime lastModifiedAt;
+    private Long userId;
 }

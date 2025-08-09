@@ -12,13 +12,14 @@ public final class JournalMapper {
 
     };
 
-    public static JournalResponse toDto(Journal j) {
+    public static JournalResponse toDto(Journal journal) {
         return JournalResponse.builder()
-                .id(j.getId())
-                .title(j.getTitle())
-                .message(j.getMessage())
-                .createdAt(j.getCreatedAt())
-                .lastModifiedAt(j.getLastModifiedAt())
+                .id(journal.getId())
+                .title(journal.getTitle())
+                .message(journal.getMessage())
+                .createdAt(journal.getCreatedAt())
+                .lastModifiedAt(journal.getLastModifiedAt())
+                .userId(journal.getUser() != null ? journal.getUser().getId() : null)
                 .build();
     }
 

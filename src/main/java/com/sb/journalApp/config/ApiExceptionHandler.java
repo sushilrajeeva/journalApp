@@ -1,6 +1,7 @@
 package com.sb.journalApp.config;
 
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,14 @@ public class ApiExceptionHandler {
                 "fields", fieldErrors
         ));
     }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String,Object>> conflict(DataIntegrityViolationException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of(
+                "error", "CONSTRAINT_VIOLATION",
+                "message", "Unique constraint violated (username)"
+        ));
+    }
+
 
 }
