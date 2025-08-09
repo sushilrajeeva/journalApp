@@ -1,0 +1,40 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]   # <— load .env from project root
+  application:
+    # you can keep "journalApp" or use a conventional lowercase name like "journal-app"
+    name: journalApp
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT:5432}/${DB_NAME}?sslmode=require
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximumPoolSize: 5
+      minimumIdle: 1
+      connectionTimeout: 30000
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate   # use Flyway for schema; change to 'update' only if you skip migrations
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true   # optional: adds /actuator/health/liveness, /readiness
+
