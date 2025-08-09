@@ -1,0 +1,46 @@
+# ---- Maven ----
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/dependency-reduced-pom.xml
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- IntelliJ IDEA ----
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ---- VS Code (if you ever open it) ----
+.vscode/
+
+# ---- macOS ----
+.DS_Store
+
+# ---- Java build artifacts ----
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# ---- Spring Boot local-only config & secrets (keep real secrets out of git) ----
+.env
+.env.*
+*.local.properties
+*.local.yml
+*.local.yaml
+src/main/resources/application-*.local.*
+src/main/resources/application-local.*
+
+# ---- Misc build dirs (sometimes appear) ----
+/out/
+/build/
+
+# ---- Docker scratch (optional) ----
+docker-data/
