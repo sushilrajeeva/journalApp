@@ -1,5 +1,6 @@
 package com.sb.journalApp.service;
 
+import com.sb.journalApp.dto.JournalPatchRequest;
 import com.sb.journalApp.dto.JournalRequest;
 import com.sb.journalApp.dto.JournalResponse;
 import com.sb.journalApp.mapper.JournalMapper;
@@ -54,6 +55,20 @@ public class JournalService {
         );
 
         JournalMapper.updateEntity(journal, request);
+
+        OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
+        journal.setLastModifiedAt(now);
+
+        journalRepository.save(journal);
+
+        return JournalMapper.toDto(journal);
+    }
+
+    @Transactional
+    public JournalResponse patchJournalById(Long id, JournalPatchRequest req) {
+        Journal journal = journalRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Journal not found: " + id));
+        JournalMapper.patchEntity(journal, req);
 
         OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
         journal.setLastModifiedAt(now);
