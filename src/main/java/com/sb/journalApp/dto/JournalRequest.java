@@ -17,7 +17,7 @@ public class JournalRequest {
     @NotBlank
     private String message;
 
-    /** Optional: set/replace owner on create/update */
-    @NotNull @Positive(message = "useriD MUST BE > 0")
-    private Long userId;
+//    /** Optional: set/replace owner on create/update */
+//    @NotNull @Positive(message = "useriD MUST BE > 0")
+//    private Long userId;
 }

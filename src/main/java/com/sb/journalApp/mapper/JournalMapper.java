@@ -4,7 +4,6 @@ import com.sb.journalApp.dto.JournalPatchRequest;
 import com.sb.journalApp.dto.JournalRequest;
 import com.sb.journalApp.dto.JournalResponse;
 import com.sb.journalApp.model.Journal;
-import org.springframework.util.StringUtils;
 
 public final class JournalMapper {
 
@@ -30,10 +29,10 @@ public final class JournalMapper {
 
     // PATCH = partial update (only if provided and non-blank)
     public static void patchEntity(Journal j, JournalPatchRequest req) {
-        if (req.getTitle() != null && StringUtils.hasText(req.getTitle())) {
+        if (req.getTitle() != null && !req.getTitle().isBlank()) {
             j.setTitle(req.getTitle());
         }
-        if (req.getMessage() != null && StringUtils.hasText(req.getMessage())) {
+        if (req.getMessage() != null && !req.getMessage().isBlank()) {
             j.setMessage(req.getMessage());
         }
     }
