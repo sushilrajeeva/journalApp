@@ -38,3 +38,7 @@ management:
       probes:
         enabled: true   # optional: adds /actuator/health/liveness, /readiness
 
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET}
+

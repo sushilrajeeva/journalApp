@@ -8,8 +8,8 @@ import lombok.*;
 public class JournalPatchRequest {
     private String title;   // optional
     private String message; // optional
-    /** Optional: set/replace owner on create/update */
-    @NotNull
-    @Positive(message = "useriD MUST BE > 0")
-    private Long userId;
+//    /** Optional: set/replace owner on create/update */
+//    @NotNull
+//    @Positive(message = "useriD MUST BE > 0")
+//    private Long userId;
 }

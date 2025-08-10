@@ -1,6 +1,7 @@
 package com.sb.journalApp.controller;
 
 import com.sb.journalApp.service.DbHealthService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,13 @@ import java.util.Map;
 public class HealthController {
     private final DbHealthService dbHealthService;
 
+    @Operation(security = {})
     @GetMapping("/api/health")
     public String health() {
         return "Journal App Works!";
     }
 
+    @Operation(security = {})
     @GetMapping("/api/health/db")
     public Map<String, Object> dbHealth() {
         return dbHealthService.health();

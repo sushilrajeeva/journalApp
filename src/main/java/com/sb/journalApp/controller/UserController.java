@@ -3,6 +3,7 @@ package com.sb.journalApp.controller;
 import com.sb.journalApp.dto.UserRequest;
 import com.sb.journalApp.dto.UserResponse;
 import com.sb.journalApp.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ public class UserController {
 
     private final UserService userService;
 
+
+    @Operation(security = {})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@Valid @RequestBody UserRequest userRequest) {
@@ -45,5 +48,16 @@ public class UserController {
     public void deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
+
+    @GetMapping("/me")
+    public UserResponse me() { return userService.getCurrentUser(); }
+
+    @PutMapping("/me")
+    public UserResponse updateMe(@Valid @RequestBody UserRequest req) { return userService.updateCurrent(req); }
+
+    @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteMe() { userService.deleteCurrent(); }
+
 
 }
